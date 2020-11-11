@@ -1,15 +1,4 @@
 /dts-v1/;
-// magic:		0xd00dfeed
-// totalsize:		0xe66 (3686)
-// off_dt_struct:	0x38
-// off_dt_strings:	0xcfc
-// off_mem_rsvmap:	0x28
-// version:		17
-// last_comp_version:	2
-// boot_cpuid_phys:	0x0
-// size_dt_strings:	0x16a
-// size_dt_struct:	0xcc4
-
 / {
     #address-cells = <0x00000002>;
     #size-cells = <0x00000002>;
@@ -55,30 +44,12 @@
         #size-cells = <0x00000002>;
         compatible = "simple-bus";
         ranges;
-        rtc@101000 {
-            interrupts = <0x0000000b>;
-            interrupt-parent = <0x00000003>;
-            reg = <0x00000000 0x00101000 0x00000000 0x00001000>;
-            compatible = "google,goldfish-rtc";
-        };
         uart@10000000 {
             interrupts = <0x0000000a>;
             interrupt-parent = <0x00000003>;
             clock-frequency = <0x00384000>;
             reg = <0x00000000 0x10000000 0x00000000 0x00000100>;
             compatible = "ns16550a";
-        };
-        poweroff {
-            value = <0x00005555>;
-            offset = <0x00000000>;
-            regmap = <0x00000004>;
-            compatible = "syscon-poweroff";
-        };
-        reboot {
-            value = <0x00007777>;
-            offset = <0x00000000>;
-            regmap = <0x00000004>;
-            compatible = "syscon-reboot";
         };
         plic@c000000 {
             phandle = <0x00000003>;
