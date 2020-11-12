@@ -11,17 +11,9 @@
 #include <log.h>
 #include <spl.h>
 #include <init.h>
-#include <virtio_types.h>
-#include <virtio.h>
 
 int board_init(void)
 {
-	/*
-	 * Make sure virtio bus is enumerated so that peripherals
-	 * on the virtio bus can be discovered by their drivers
-	 */
-	virtio_init();
-
 	return 0;
 }
 

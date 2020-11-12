@@ -28,9 +28,7 @@
 
 #ifndef CONFIG_SPL_BUILD
 #define BOOT_TARGET_DEVICES(func) \
-	func(FFCOM, ffcom, na) \
-	func(VIRTIO, virtio, 0) \
-	func(DHCP, dhcp, na)
+	func(FFCOM, ffcom, na)
 
 #include <config_distro_bootcmd.h>
 

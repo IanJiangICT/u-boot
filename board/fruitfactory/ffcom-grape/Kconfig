@@ -30,10 +30,6 @@ config BOARD_SPECIFIC_OPTIONS # dummy
 	select GENERIC_RISCV
 	select SUPPORT_SPL
 	imply SYS_NS16550
-	imply VIRTIO_MMIO
-	imply VIRTIO_NET
-	imply VIRTIO_BLK
-	imply VIRTIO_PCI
 	imply CMD_PING
 	imply CMD_FS_GENERIC
 	imply DOS_PARTITION
@@ -43,14 +39,7 @@ config BOARD_SPECIFIC_OPTIONS # dummy
 	imply CMD_EXT4
 	imply CMD_FAT
 	imply BOARD_LATE_INIT
-	imply SIFIVE_SERIAL
 	imply SMP
-	imply PCI
-	imply DM_PCI
-	imply PCIE_ECAM_GENERIC
-	imply CMD_PCI
-	imply E1000
-	imply NVME
 	imply SPL_RAM_SUPPORT
 	imply SPL_RAM_DEVICE
 	imply SYSRESET
