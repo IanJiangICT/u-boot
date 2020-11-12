@@ -47,4 +47,7 @@ config BOARD_SPECIFIC_OPTIONS # dummy
 	imply CMD_POWEROFF
 	imply SYSRESET_CMD_POWEROFF
 
+config PRE_START_CODE
+	def_bool y
+
 endif

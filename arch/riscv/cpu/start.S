@@ -39,6 +39,9 @@ secondary_harts_relocation_error:
 .section .text
 .globl _start
 _start:
+#if CONFIG_PRE_START_CODE
+#include "pre-start.S"
+#endif
 #if CONFIG_IS_ENABLED(RISCV_MMODE)
 	csrr	a0, CSR_MHARTID
 #endif
