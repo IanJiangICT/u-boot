@@ -1,0 +1,56 @@
+if TARGET_FFCOM_APPLE
+
+config SYS_BOARD
+	default "ffcom-apple"
+
+config SYS_VENDOR
+	default "fruitfactory"
+
+config SYS_CPU
+	default "generic"
+
+config SYS_CONFIG_NAME
+	default "ffcom-apple"
+
+config SYS_TEXT_BASE
+	default 0x81200000 if SPL
+	default 0x80000000 if !RISCV_SMODE
+	default 0x80200000 if RISCV_SMODE && ARCH_RV64I
+	default 0x80400000 if RISCV_SMODE && ARCH_RV32I
+
+config SPL_TEXT_BASE
+	default 0x80000000
+
+config SYS_NS16550_MEM32
+	def_bool y
+
+config SPL_OPENSBI_LOAD_ADDR
+	hex
+	default 0x81000000
+
+config BOARD_SPECIFIC_OPTIONS # dummy
+	def_bool y
+	select GENERIC_RISCV
+	select SUPPORT_SPL
+	imply SYS_NS16550
+	imply CMD_PING
+	imply CMD_FS_GENERIC
+	imply DOS_PARTITION
+	imply EFI_PARTITION
+	imply ISO_PARTITION
+	imply CMD_EXT2
+	imply CMD_EXT4
+	imply CMD_FAT
+	imply BOARD_LATE_INIT
+	imply SMP
+	imply SPL_RAM_SUPPORT
+	imply SPL_RAM_DEVICE
+	imply SYSRESET
+	imply SYSRESET_SYSCON
+	imply CMD_POWEROFF
+	imply SYSRESET_CMD_POWEROFF
+
+config PRE_START_CODE
+	def_bool y
+
+endif

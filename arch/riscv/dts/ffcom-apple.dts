@@ -1,0 +1,74 @@
+/dts-v1/;
+/ {
+    #address-cells = <0x00000002>;
+    #size-cells = <0x00000002>;
+    compatible = "ffcom-apple";
+    model = "ffcom-apple";
+    chosen {
+        bootargs = [00];
+        stdout-path = "/soc/uart@ff63000000";
+    };
+    memory@80 {
+        device_type = "memory";
+        reg = <0x00000000 0x00000080 0x00000000 0x08000000>; /* 128 MB */
+        /* reg = <0x00000000 0x00000080 0x00000000 0x10000000>; /* 128 MB */
+    };
+    cpus {
+        #address-cells = <0x00000001>;
+        #size-cells = <0x00000000>;
+        timebase-frequency = <0x00989680>;
+        cpu@0 {
+            phandle = <0x00000001>;
+            device_type = "cpu";
+            reg = <0x00000000>;
+            status = "okay";
+            compatible = "riscv";
+            riscv,isa = "rv64imafd";
+            mmu-type = "riscv,sv48";
+            interrupt-controller {
+                #interrupt-cells = <0x00000001>;
+                interrupt-controller;
+                compatible = "riscv,cpu-intc";
+                phandle = <0x00000002>;
+            };
+        };
+        cpu-map {
+            cluster0 {
+                core0 {
+                    cpu = <0x00000001>;
+                };
+            };
+        };
+    };
+    soc {
+        #address-cells = <0x00000002>;
+        #size-cells = <0x00000002>;
+        compatible = "simple-bus";
+        ranges;
+        uart@ff63000000 {
+            interrupts = <0x00000054>;
+            interrupt-parent = <0x00000003>;
+            /* clock-frequency = <0x17d7840>; /* 25 MHz */
+            clock-frequency = <0x7735940>; /* 125 MHz */
+            reg-io-width = <4>;
+            reg-shift = <2>;
+            reg = <0x000000ff 0x63000000 0x00000000 0x00000100>;
+            compatible = "ns16550a";
+        };
+        plic@ff70000000{
+            phandle = <0x00000003>;
+            riscv,ndev = <0x00000035>;
+            reg = <0x000000ff 0x70000000 0x00000000 0x04000000>;
+            interrupts-extended = <0x00000002 0x0000000b 0x00000002 0x00000009>;
+            interrupt-controller;
+            compatible = "riscv,plic0";
+            #interrupt-cells = <0x00000001>;
+            #address-cells = <0x00000000>;
+        };
+        clint@ff010f0000{
+            interrupts-extended = <0x00000002 0x00000003 0x00000002 0x00000007>;
+            reg = <0x000000ff 0x10f00000 0x00000000 0x00010000>;
+            compatible = "riscv,clint0";
+        };
+    };
+};
