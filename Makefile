@@ -807,6 +807,7 @@ libs-$(CONFIG_API) += api/
 ifdef CONFIG_POST
 libs-y += post/
 endif
+libs-$(CONFIG_UBOOT_PAYLOAD) += payload/
 libs-$(CONFIG_UNIT_TEST) += test/
 libs-$(CONFIG_UT_ENV) += test/env/
 libs-$(CONFIG_UT_OPTEE) += test/optee/
