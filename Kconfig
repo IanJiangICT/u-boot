@@ -455,6 +455,8 @@ source "fs/Kconfig"
 
 source "lib/Kconfig"
 
+source "payload/Kconfig"
+
 source "test/Kconfig"
 
 source "tools/Kconfig"

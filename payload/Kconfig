@@ -1,0 +1,7 @@
+#
+# Payload 
+#
+
+config UBOOT_PAYLOAD 
+	bool "With buildin payload"
+	default no

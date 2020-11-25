@@ -84,4 +84,9 @@ SECTIONS
 		. = ALIGN(8);
 		__bss_end = .;
 	}
+
+	. = ALIGN(0x200000);
+	.payload : {
+		KEEP(*(.payload*));
+	}
 }
