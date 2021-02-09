@@ -204,7 +204,18 @@
 		"bootflash=run flashargs; " \
 			"cp ${ramdisk_addr} ${ramdisk_addr_r} ${maxramdisk}; " \
 			"bootm ${kernel_addr} ${ramdisk_addr_r}\0" \
+		"distro_bootcmd=tftp 0x60500000 vexpress-v2p-ca9.dtb; " \
+			"tftp 0x60500000 vexpress-v2p-ca9.dtb; " \
+			"tftp 0x60003000 uImage; " \
+			"setenv bootargs 'console=ttyAMA0'; " \
+			"bootm 0x60003000 - 0x60500000;" \
 		"fdtfile=" CONFIG_DEFAULT_FDT_FILE "\0"
+
+
+#define CONFIG_IPADDR   192.168.2.110
+#define CONFIG_SERVERIP 192.168.2.25
+#define CONFIGN_NETMASK 255.255.255.1
+
 
 /* FLASH and environment organization */
 #define PHYS_FLASH_SIZE			0x04000000	/* 64MB */
